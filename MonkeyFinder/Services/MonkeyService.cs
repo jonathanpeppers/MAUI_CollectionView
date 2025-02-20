@@ -1,4 +1,5 @@
 ﻿using System.Net.Http.Json;
+using System.Text.Json.Serialization;
 
 namespace MonkeyFinder.Services;
 
@@ -20,7 +21,7 @@ public class MonkeyService
         var response = await httpClient.GetAsync("https://www.montemagno.com/monkeys.json");
         if (response.IsSuccessStatusCode)
         {
-            var temp = await response.Content.ReadFromJsonAsync<List<Monkey>>();
+            var temp = await response.Content.ReadFromJsonAsync(SourceGenerationContext.Default.ListMonkey);
             for (var i = 0; i < 100; i++)
             {
                 foreach (var item in temp)
@@ -40,4 +41,10 @@ public class MonkeyService
 
         return monkeyList;
     }
+}
+
+[JsonSourceGenerationOptions(WriteIndented = true)]
+[JsonSerializable(typeof(List<Monkey>))]
+internal partial class SourceGenerationContext : JsonSerializerContext
+{
 }
