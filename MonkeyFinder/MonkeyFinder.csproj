@@ -20,6 +20,10 @@
 		<ApplicationVersion>1</ApplicationVersion>
 		<SupportedOSPlatformVersion>21</SupportedOSPlatformVersion>
 
+		<!-- Make Android profiling simpler -->
+		<RuntimeIdentifier>android-arm64</RuntimeIdentifier>
+		<AndroidEnableProfiler>true</AndroidEnableProfiler>
+		<AndroidPackageFormat>apk</AndroidPackageFormat>
 	</PropertyGroup>
 
 	<ItemGroup>
